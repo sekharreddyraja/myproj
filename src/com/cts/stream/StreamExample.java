@@ -2,6 +2,7 @@ package com.cts.stream;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,8 +27,15 @@ public class StreamExample {
 																						// stream from a bunch of object
 																						// references
 	
-	
-	
+		Stream<String> stream=Stream.of("raja","sekhar","naresh","suresh").filter(s->s.startsWith("s"));
+		stream.forEach(System.out::println);
+	//	stream.anyMatch(p->true); we will get illigialstateexception
+		
+		Supplier<Stream<String>> supplierStream=()->Stream.of("raja","ramya","sekhar","ramu").filter(p->p.startsWith("r"));
+		supplierStream.get().allMatch(p->true);
+		supplierStream.get().noneMatch(p->false);
+		supplierStream.get().forEach(System.out::println);
+		
 	}
 
 }
